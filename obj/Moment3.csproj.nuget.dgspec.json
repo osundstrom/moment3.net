@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\dt191g\\moment3\\Moment3.csproj": {}
+    "C:\\Users\\Admin\\dt191g\\Moment3\\Moment3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\dt191g\\moment3\\Moment3.csproj": {
+    "C:\\Users\\Admin\\dt191g\\Moment3\\Moment3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\dt191g\\moment3\\Moment3.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\dt191g\\Moment3\\Moment3.csproj",
         "projectName": "Moment3",
-        "projectPath": "C:\\Users\\Admin\\dt191g\\moment3\\Moment3.csproj",
+        "projectPath": "C:\\Users\\Admin\\dt191g\\Moment3\\Moment3.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\dt191g\\moment3\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\dt191g\\Moment3\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -77,6 +77,10 @@
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[3.2.0, )"
+            },
+            "MongoDB.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.2.2, )"
             }
           },
           "imports": [

@@ -2207,6 +2207,19 @@
           }
         }
       },
+      "MongoDB.EntityFrameworkCore/8.2.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "8.0.12",
+          "MongoDB.Driver": "3.1.0"
+        },
+        "compile": {
+          "lib/net8.0/MongoDB.EntityFrameworkCore.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/MongoDB.EntityFrameworkCore.dll": {}
+        }
+      },
       "Mono.TextTemplating/3.0.0": {
         "type": "package",
         "dependencies": {
@@ -6736,6 +6749,22 @@
         "packageIcon.png"
       ]
     },
+    "MongoDB.EntityFrameworkCore/8.2.2": {
+      "sha512": "+TwL4fL+6VYtXhu1rIigIDx4HLMzTTMJeah03/4A71kAvXg1Hk1HW3aMzxKFRGgmCCw9uJWXxkGy+tWkRgz5Rw==",
+      "type": "package",
+      "path": "mongodb.entityframeworkcore/8.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "BREAKING-CHANGES.md",
+        "LICENSE.md",
+        "README.md",
+        "lib/net8.0/MongoDB.EntityFrameworkCore.dll",
+        "mongodb.entityframeworkcore.8.2.2.nupkg.sha512",
+        "mongodb.entityframeworkcore.nuspec",
+        "packageIcon.png"
+      ]
+    },
     "Mono.TextTemplating/3.0.0": {
       "sha512": "YqueG52R/Xej4VVbKuRIodjiAhV0HR/XVbLbNrJhCZnzjnSjgMJ/dCdV0akQQxavX6hp/LC6rqLGLcXeQYU7XA==",
       "type": "package",
@@ -8386,7 +8415,8 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.2",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.2",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 9.0.0",
-      "MongoDB.Driver >= 3.2.0"
+      "MongoDB.Driver >= 3.2.0",
+      "MongoDB.EntityFrameworkCore >= 8.2.2"
     ]
   },
   "packageFolders": {
@@ -8466,6 +8496,10 @@
           "MongoDB.Driver": {
             "target": "Package",
             "version": "[3.2.0, )"
+          },
+          "MongoDB.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[8.2.2, )"
           }
         },
         "imports": [
