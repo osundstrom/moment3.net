@@ -11,5 +11,5 @@ namespace Moment3.Models{
          [Required]
         public List<Author>? Author {get; set;} //Författare för bok, kan vara flera för en bok
 
-    }
-}
+       
+}}
