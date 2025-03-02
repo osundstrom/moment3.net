@@ -1,0 +1,29 @@
+@model Moment3.Models.Book
+
+@{
+    ViewData["Title"] = "Redigera bok";
+}
+
+<h2>Redigera bok</h2>
+
+<form method="post" asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label for="Title">Titel</label>
+        <input asp-for="Title" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Authors">Författare (kommaseparerade)</label>
+        <input type="text" class="form-control" name="authors" value="@ViewBag.Authors" required/>
+    </div>
+
+    <div class="form-group">
+        <label for="Description">Handling</label>
+        <textarea asp-for="Description" class="form-control" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Spara ändringar</button>
+    <a asp-action="Index" class="btn btn-secondary">Avbryt</a>
+</form>

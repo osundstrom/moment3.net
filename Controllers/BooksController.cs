@@ -4,8 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using Moment3.Data;
 using Moment3.Models;
 
-namespace Moment3.Controllers{
-    public class BooksController : Controller{
+namespace Moment3.Controllers
+{
+    public class BooksController : Controller
+    {
 
         private readonly BooksDbContext _context;
 
@@ -14,34 +16,41 @@ namespace Moment3.Controllers{
             _context = context;
         }
 
-        public IActionResult index(){
+        public IActionResult index()
+        {
             var books = _context.Book.Include(b => b.Authors).ToList();
             return View(books);
         }
 
         //Create -- GET
-        public IActionResult Create(){
+        public IActionResult Create()
+        {
             return View();
         }
-        
+
         //Create -- POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Book book, string authors){
-            if (ModelState.IsValid){ //om modellen är giltig
+        public IActionResult Create(Book book, string authors)
+        {
+            if (ModelState.IsValid)
+            { //om modellen är giltig
 
-                if (!string.IsNullOrEmpty(authors)){ //om skild från null/empty
+                if (!string.IsNullOrEmpty(authors))
+                { //om skild från null/empty
                     //Delar vid komma tecken
                     var authorNames = authors.Split(',', StringSplitOptions.RemoveEmptyEntries);
-                                             
-                    foreach (var name in authorNames){ //För varje enskilt i authoNames
-                        
+
+                    foreach (var name in authorNames)
+                    { //För varje enskilt i authoNames
+
                         //Kollar om författare redan finns i databasen
                         var author = _context.Author.FirstOrDefault(a => a.Name == name);
-                        
+
                         //Om författare ej fanns så läggs den till i db
-                        if (author == null){
-                            author = new Author {Name = name};
+                        if (author == null)
+                        {
+                            author = new Author { Name = name };
                             _context.Author.Add(author);
                             _context.SaveChanges();
                         }
@@ -55,6 +64,85 @@ namespace Moment3.Controllers{
 
                 //Skickas  till alla böcker.
                 return RedirectToAction("Index");
+            }
+
+            return View(book);
+        }
+
+        //------------------------------------------DELETE---------------------------------------------------------//
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            var book = _context.Book.Include(b => b.Authors).FirstOrDefault(b => b.Id == id);
+
+            if (book != null)
+            {
+                book.Authors.Clear();
+                _context.Book.Remove(book);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        //--------------------------------------------EDIT/PUT-------------------------------------------------//
+        //GET
+        public IActionResult Edit(int id)
+        {
+            var book = _context.Book //Laddar in bok med id, samt författare
+                .Include(b => b.Authors)
+                .FirstOrDefault(b => b.Id == id);
+
+            if (book != null)
+            { //om skilt från null
+                var authorAll = string.Join(", ", book.Authors.Select(a => a.Name)); //Sätter till en komma indelad lista
+                ViewBag.Authors = authorAll; //viewbag
+            }
+            return View(book);
+        }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Book book, string authors)
+        {
+
+            if (ModelState.IsValid){ //Om valid
+                var ChoosenBook = _context.Book //hämtar bok och författare
+                    .Include(b => b.Authors)
+                    .FirstOrDefault(b => b.Id == id);
+
+                if (ChoosenBook != null) //Om skild från null
+                {
+                    ChoosenBook.Title = book.Title; //uppdatera titel
+                    ChoosenBook.Description = book.Description; //Uppdatera beskrivning
+                    ChoosenBook.Authors.Clear(); //rensa författare.
+                }
+
+                if (!string.IsNullOrEmpty(authors)) //om författare "stringen" inte är tom eller null
+                {   
+                    var authorNames = authors.Split(',', StringSplitOptions.RemoveEmptyEntries); //dela upp med komma
+                    
+                    foreach (var name in authorNames)
+                    {   //Om den finns i db så hämta den
+                        var author = _context.Author.FirstOrDefault(a => a.Name == name);
+                        //Om författare ej finns i db så skapa.
+                        if (author == null)
+                        {
+                            author = new Author { Name = name };
+                            _context.Author.Add(author);
+                            _context.SaveChanges();
+                        }
+
+                        ChoosenBook?.Authors.Add(author);
+                    }
+                }
+
+                _context.SaveChanges();
+                //Skicka tillbaka till index.(lista över blöcker.)
+                return RedirectToAction(nameof(Index));
             }
 
             return View(book);
