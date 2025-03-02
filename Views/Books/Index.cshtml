@@ -2,6 +2,36 @@
     ViewData["Title"] = "Böcker";
 }
 
+@model List<Moment3.Models.Book>
 
 <h2>@ViewData["Title"]</h2>
 
+<table class="tableBooks">
+    <thead>
+        <tr style="background-color: #f0f0f0;">
+            <th>Titel</th>
+            <th>Författare</th>
+            <th>Handling</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var book in Model){//loopar igenom
+        <tr>
+            <td>@book.Title</td>
+            <td>
+                @if (book.Authors != null){ //Om skild från null
+                    @foreach (var author in book.Authors) //loopar igenom
+                    {
+                        <span>@author.Name</span><br /> //Skriver ut flrfattare
+                    }
+                }else {
+                    <span>Ingen författare</span> //om ingen finns
+                }
+            </td>
+
+            <td>@book.Description</td> <!--Handling-->
+         
+        </tr>
+    }
+    </tbody>
+</table>

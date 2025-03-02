@@ -11,7 +11,6 @@ namespace Moment3.Models{
     [Required]
     public string? Description {get; set;}
 
-    public int AuthorId {get; set;}
-    public Author? Author {get; set;}
+    public ICollection<Author> Authors { get; set; } = new List<Author>();
 }
 }

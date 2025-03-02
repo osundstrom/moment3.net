@@ -6,8 +6,8 @@ namespace Moment3.Models{
     public int Id { get; set; }
 
     [Required]
-    public string? Name { get; set; }
+    public string? Name {get; set;}
 
     // Flera böcker för en förtfattare
-    public List<Book> Books { get; set; } = new();
+    public ICollection<Book> Books { get; set; } = new List<Book>();
 }}

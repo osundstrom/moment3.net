@@ -1,0 +1,11 @@
+.tableBooks {
+    border: 1;
+    padding: 5;
+    width: 100vw; 
+    margin-top: 10px; 
+    border-collapse: collapse;
+}
+
+body{
+    width: 100%;
+}
