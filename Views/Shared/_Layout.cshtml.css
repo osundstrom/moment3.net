@@ -1,1 +1,8 @@
-﻿
+﻿nav ul{
+    list-style: none;
+}
+
+nav li{
+    display: inline-block;
+    margin-left: 2vw;
+}

@@ -148,7 +148,16 @@ namespace Moment3.Controllers
             return View(book);
         }
 
+//----------------------------------Visa info----------------------------------------//
 
+    public IActionResult Information(int id)
+{
+    var book = _context.Book
+        .Include(b => b.Authors)
+        .FirstOrDefault(b => b.Id == id);
+
+    return View(book);
+}
 
 
     }

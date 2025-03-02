@@ -10,41 +10,16 @@
     <thead>
         <tr style="background-color: #f0f0f0;">
             <th>Titel</th>
-            <th>Författare</th>
-            <th>Handling</th>
-            <th>Ändra</th>
-            <th>Radera</th>
+            <th>Information</th>
+            
         </tr>
     </thead>
     <tbody>
          
     @foreach (var book in Model){//loopar igenom
         <tr>
-            <td>@book.Title</td>
-            <td>
-                @if (book.Authors != null){ //Om skild från null
-                    @foreach (var author in book.Authors) //loopar igenom
-                    {
-                        <span>@author.Name</span><br /> //Skriver ut flrfattare
-                    }
-                }else {
-                    <span>Ingen författare</span> //om ingen finns
-                }
-            </td>
-                <td>@book.Description</td> <!--Handling-->
-
-            <td>
-                <a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-warning">Redigera</a>
-            </td>
-
-            <td>
-                <form method="post" asp-action="Delete" asp-route-id="@book.Id" style="display:inline;">
-                <button class="btn btn-danger" type="submit">Ta bort</button>
-                </form>
-            </td>
-
-            
-         
+            <td><a asp-action="Information" asp-route-id="@book.Id">@book.Title</a></td>
+    <td><a asp-action="Information" asp-route-id="@book.Id" class="btn btn-info">Visa mer</a></td>
         </tr>
     }
     </tbody>
