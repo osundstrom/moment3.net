@@ -12,15 +12,15 @@
 <body>
     <header>
         <nav>
-                    <ul class="">
-                         <li class="">
-                            <a class="" asp-area="" asp-controller="Home" asp-action="Index">Startsida</a>
+                    <ul class="ulNav">
+                         <li class="liNav">
+                            <a class="aNav" asp-area="" asp-controller="Home" asp-action="Index">Startsida</a>
                         </li>
-                        <li class="">
-                            <a class="" asp-area="" asp-controller="Books" asp-action="Index">Böcker</a>
+                        <li class="liNav">
+                            <a class="aNav" asp-area="" asp-controller="Books" asp-action="Index">Böcker</a>
                         </li>
-                        <li class="">
-                            <a class="" asp-area="" asp-controller="Books" asp-action="Create">Lägg till</a>
+                        <li class="liNav">
+                            <a class="aNav" asp-area="" asp-controller="Books" asp-action="Create">Lägg till</a>
                         </li>
                     </ul>
         </nav>
@@ -33,7 +33,7 @@
             @RenderBody()
         </main>
     
-
+    <hr>
     <footer>
        <p>Av Oskar Sundström</p>
     </footer>
