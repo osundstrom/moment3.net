@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Moment3.Data;
 using Moment3.Models;
@@ -18,11 +17,11 @@ namespace Moment3.Controllers
         }
         
         public IActionResult index()
-        {//Skickar alla böcker och flörfattare till vien
-            var books = _context.Book.Include(b => b.Authors).ToList();
+        {//Skickar alla böcker 
+            var books = _context.Book.ToList();
             return View(books);
         }
-
+ //------------------------------------------Create---------------------------------------------------------//
         //Create -- GET
         public IActionResult Create()
         {

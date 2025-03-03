@@ -2,14 +2,18 @@
 
 @{
     ViewData["Title"] = $"Mer info - {Model.Title}";
-    var authors = Model.Authors != null && Model.Authors.Any() ? string.Join(", ", Model.Authors.Select(a => a.Name)) : "Ingen författare";
 }
 
 <h2>@ViewData["Title"]</h2>
 
 <div>
     <p><strong>Titel:</strong> @Model.Title</p>
-    <p><strong>Författare:</strong> @authors</p>
+    <p><strong>Författare:</strong>
+    @if (Model.Authors != null && Model.Authors.Any())
+    {
+        @string.Join(", ", Model.Authors.Select(a => a.Name))
+    }
+</p>
     <p><strong>Handling:</strong> @Model.Description</p>
 </div>
 
