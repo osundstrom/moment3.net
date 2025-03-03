@@ -9,9 +9,10 @@
 <div>
     <p><strong>Titel:</strong> @Model.Title</p>
     <p><strong>Författare:</strong>
-    @if (Model.Authors != null && Model.Authors.Any())
+    
+    @if (Model.Authors != null && Model.Authors.Any()) //om author är skilt från null och har kmminst ett objekt..
     {
-        @string.Join(", ", Model.Authors.Select(a => a.Name))
+        @string.Join(", ", Model.Authors.Select(a => a.Name)) //separerer alla författare med komma. 
     }
 </p>
     <p><strong>Handling:</strong> @Model.Description</p>
