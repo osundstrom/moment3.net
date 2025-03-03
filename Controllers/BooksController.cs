@@ -11,13 +11,14 @@ namespace Moment3.Controllers
 
         private readonly BooksDbContext _context;
 
+        //Skickar med booksDbCOntext in i kontrollern
         public BooksController(BooksDbContext context)
         {
             _context = context;
         }
-
+        
         public IActionResult index()
-        {
+        {//Skickar alla böcker och flörfattare till vien
             var books = _context.Book.Include(b => b.Authors).ToList();
             return View(books);
         }
@@ -77,6 +78,7 @@ namespace Moment3.Controllers
         {
             var book = _context.Book.Include(b => b.Authors).FirstOrDefault(b => b.Id == id);
 
+            //Om boken finns, ta bort författare och boken.  
             if (book != null)
             {
                 book.Authors.Clear();
@@ -92,8 +94,8 @@ namespace Moment3.Controllers
         public IActionResult Edit(int id)
         {
             var book = _context.Book //Laddar in bok med id, samt författare
-                .Include(b => b.Authors)
-                .FirstOrDefault(b => b.Id == id);
+                .Include(b => b.Authors) //hämtar föftattare från tabellen
+                .FirstOrDefault(b => b.Id == id); 
 
             if (book != null)
             { //om skilt från null
@@ -152,9 +154,9 @@ namespace Moment3.Controllers
 
     public IActionResult Information(int id)
 {
-    var book = _context.Book
-        .Include(b => b.Authors)
-        .FirstOrDefault(b => b.Id == id);
+    var book = _context.Book //alla böcker från tabellen
+        .Include(b => b.Authors) //inkludera författare från author tabell
+        .FirstOrDefault(b => b.Id == id); //första med rätt id
 
     return View(book);
 }
