@@ -9,12 +9,13 @@
 <div>
     <p><strong>Titel:</strong> @Model.Title</p>
     <p><strong>Författare:</strong>
-    
-    @if (Model.Authors != null && Model.Authors.Any()) //om author är skilt från null och har kmminst ett objekt..
-    {
-        @string.Join(", ", Model.Authors.Select(a => a.Name)) //separerer alla författare med komma. 
-    }
-</p>
+
+        @if (Model.Authors != null && Model.Authors.Any()) //om author är skilt från null och har kmminst ett objekt..
+        {
+            @string.Join(", ", Model.Authors.Select(a => a.Name))
+            //separerer alla författare med komma.
+        }
+    </p>
     <p><strong>Handling:</strong> @Model.Description</p>
 </div>
 
@@ -23,5 +24,5 @@
     <form method="post" asp-action="Delete" asp-route-id="@Model.Id" style="display:inline;">
         <button type="submit" class="btn btn-danger">Radera</button>
     </form>
-    <a asp-action="Index" class="btn btn-secondary">Tillbaka till listan</a>
+    <a asp-action="Index" class="btn btn-secondary">Tillbaka</a>
 </div>

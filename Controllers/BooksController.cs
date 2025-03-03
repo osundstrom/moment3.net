@@ -15,13 +15,13 @@ namespace Moment3.Controllers
         {
             _context = context;
         }
-        
+
         public IActionResult index()
         {//Skickar alla böcker 
             var books = _context.Book.ToList();
             return View(books);
         }
- //------------------------------------------Create---------------------------------------------------------//
+        //------------------------------------------Create---------------------------------------------------------//
         //Create -- GET
         public IActionResult Create()
         {
@@ -94,7 +94,7 @@ namespace Moment3.Controllers
         {
             var book = _context.Book //Laddar in bok med id, samt författare
                 .Include(b => b.Authors) //hämtar föftattare från tabellen
-                .FirstOrDefault(b => b.Id == id); 
+                .FirstOrDefault(b => b.Id == id);
 
             if (book != null)
             { //om skilt från null
@@ -110,7 +110,8 @@ namespace Moment3.Controllers
         public IActionResult Edit(int id, Book book, string authors)
         {
 
-            if (ModelState.IsValid){ //Om valid
+            if (ModelState.IsValid)
+            { //Om valid
                 var ChoosenBook = _context.Book //hämtar bok och författare
                     .Include(b => b.Authors)
                     .FirstOrDefault(b => b.Id == id);
@@ -123,9 +124,9 @@ namespace Moment3.Controllers
                 }
 
                 if (!string.IsNullOrEmpty(authors)) //om författare "stringen" inte är tom eller null
-                {   
+                {
                     var authorNames = authors.Split(',', StringSplitOptions.RemoveEmptyEntries); //dela upp med komma
-                    
+
                     foreach (var name in authorNames)
                     {   //Om den finns i db så hämta den
                         var author = _context.Author.FirstOrDefault(a => a.Name == name);
@@ -149,16 +150,16 @@ namespace Moment3.Controllers
             return View(book);
         }
 
-//----------------------------------Visa info----------------------------------------//
+        //----------------------------------Visa info----------------------------------------//
 
-    public IActionResult Information(int id)
-{
-    var book = _context.Book //alla böcker från tabellen
-        .Include(b => b.Authors) //inkludera författare från author tabell
-        .FirstOrDefault(b => b.Id == id); //första med rätt id
+        public IActionResult Information(int id)
+        {
+            var book = _context.Book //alla böcker från tabellen
+                .Include(b => b.Authors) //inkludera författare från author tabell
+                .FirstOrDefault(b => b.Id == id); //första med rätt id
 
-    return View(book);
-}
+            return View(book);
+        }
 
 
     }
